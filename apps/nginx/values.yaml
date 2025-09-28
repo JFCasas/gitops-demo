@@ -1,4 +1,4 @@
 replicaCount: 1
 image:
-  repository: quay.io/nginx/nginx
+  repository: quay.io/libpod/nginx
   tag: latest
