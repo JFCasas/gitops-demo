@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: app-to-apps
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/JFCasas/gitops-demo.git   # URL de tu repo
+        revision: master        # usa main si tu rama se llama main
+        directories:
+          - path: apps/*        # cada subcarpeta = una aplicación
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: platform
+      source:
+        repoURL: https://github.com/JFCasas/gitops-demo.git
+        targetRevision: master
+        path: '{{path}}'
+        helm:
+          releaseName: '{{path.basename}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
