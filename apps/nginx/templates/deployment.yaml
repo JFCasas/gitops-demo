@@ -15,5 +15,6 @@ spec:
       containers:
         - name: nginx
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["nginx", "-g", "daemon off;"]
           ports:
             - containerPort: 80
