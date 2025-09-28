@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: busybox
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: nginx
+      app: busybox
   template:
     metadata:
       labels:
-        app: nginx
+        app: busybox
     spec:
       containers:
-        - name: nginx
+        - name: busybox
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           command: {{ toJson .Values.command }}
           ports:
