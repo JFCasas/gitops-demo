@@ -1,4 +1,4 @@
 replicaCount: 1
 image:
-  repository: quay.io/libpod/alpine_nginx:latest
+  repository: quay.io/libpod/alpine_nginx
   tag: latest
