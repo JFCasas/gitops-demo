@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: platform
+  namespace: argocd
+spec:
+  sourceRepos:
+    - '*'                            # repos permitidos (todo por ahora)
+  destinations:
+    - namespace: '*'                 # namespaces permitidos
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'                     # tipos de recursos permitidos
+      kind: '*'
