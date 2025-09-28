@@ -1,4 +1,8 @@
 replicaCount: 1
+
 image:
-  repository: quay.io/libpod/alpine_nginx
+  repository: quay.io/libpod/busybox
   tag: latest
+
+# comando para mantener el contenedor vivo
+command: ["sleep", "3600"]
