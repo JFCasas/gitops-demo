@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: app-to-apps
+  name: app-to-infra
   namespace: argocd
 spec:
   generators:
     - git:
-        repoURL: https://github.com/JFCasas/gitops-demo.git   # URL de tu repo
-        revision: master        # usa main si tu rama se llama main
+        repoURL: https://github.com/JFCasas/gitops-demo.git
+        revision: master
         directories:
-          - path: apps/*        # cada subcarpeta = una aplicación
+          - path: infra/*      # recorre cada subcarpeta de infra/
   template:
     metadata:
       name: '{{path.basename}}'
     spec:
-      project: platform
+      project: infra
       source:
         repoURL: https://github.com/JFCasas/gitops-demo.git
         targetRevision: master
@@ -24,7 +24,4 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{path.basename}}'
-      #syncPolicy:
-        #automated:
-          #prune: true
-          #selfHeal: true
+      
