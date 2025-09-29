@@ -1,0 +1,5 @@
+apiVersion: v2
+name: redis
+description: Despliegue de Redis Cluster mediante operador
+type: application
+version: 0.1.0
