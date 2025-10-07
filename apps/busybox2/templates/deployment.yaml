@@ -1,21 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: busybox2
+  name: {{ include "busybox2.fullname" . }}
+  labels:
+    app: {{ include "busybox2.name" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: busybox2
+      app: {{ include "busybox2.name" . }}
   template:
     metadata:
       labels:
-        app: busybox2
+        app: {{ include "busybox2.name" . }}
     spec:
       containers:
-        - name: busybox2
+        - name: {{ include "busybox2.name" . }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: {{ toJson .Values.command }}
-          ports:
-            - containerPort: 80
+          resources: {{- toYaml .Values.resources | nindent 12 }}
 
