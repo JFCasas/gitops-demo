@@ -1,0 +1,4 @@
+apiVersion: v2
+name: redis-operator
+version: 0.0.1
+description: Dummy chart placeholder so Helm can render Argo CD Application
