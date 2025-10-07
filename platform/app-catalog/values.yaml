@@ -2,3 +2,6 @@ applications:
   - name: busybox2
     namespace: busybox
     path: apps/busybox2
+  - name: redis-operator
+    namespace: redis
+    path: infra/redis-operator
