@@ -16,6 +16,9 @@ spec:
       {{- range .valueFiles }}
         - {{ . }}
       {{- end }}
+    {{- else }}
+    directory:
+      recurse: true
     {{- end }}
   destination:
     server: https://kubernetes.default.svc
@@ -26,6 +29,7 @@ spec:
       selfHeal: true
 ---
 {{- end }}
+
 
 
 
