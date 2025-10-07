@@ -7,9 +7,16 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/JFCasas/gitops-demo.git'  # ⚠️ cambia por tu repo real
+    repoURL: 'https://github.com/JFCasas/gitops-demo.git'
     targetRevision: HEAD
     path: {{ .path }}
+    {{- if .valueFiles }}
+    helm:
+      valueFiles:
+      {{- range .valueFiles }}
+        - {{ . }}
+      {{- end }}
+    {{- end }}
   destination:
     server: https://kubernetes.default.svc
     namespace: {{ .namespace }}
@@ -19,5 +26,6 @@ spec:
       selfHeal: true
 ---
 {{- end }}
+
 
 
